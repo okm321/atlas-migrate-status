@@ -27,7 +27,7 @@ builds:
       - arm64
     binary: atlas-migrate-status
     ldflags:
-      - -s -w -X github.com/okmkm321/atlas-migrate-status/cmd.Version={{.Version}}
+      - -s -w -X github.com/okm321/atlas-migrate-status/cmd.Version={{.Version}}
 
 archives:
   - format: tar.gz
@@ -59,7 +59,7 @@ changelog:
 
 release:
   github:
-    owner: okmkm321
+    owner: okm321
     name: atlas-migrate-status
   draft: false
   prerelease: auto

@@ -32,24 +32,24 @@ VERSION         DESCRIPTION              EXECUTED AT          DURATION  TYPE    
 
 **macOS / Linux:**
 ```bash
-curl -sSL https://raw.githubusercontent.com/okmkm321/atlas-migrate-status/main/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/okm321/atlas-migrate-status/main/install.sh | sh
 ```
 
 **Windows (PowerShell):**
 ```powershell
 # Download the latest release from:
-# https://github.com/okmkm321/atlas-migrate-status/releases
+# https://github.com/okm321/atlas-migrate-status/releases
 ```
 
 ### Using Go
 
 ```bash
-go install github.com/okmkm321/atlas-migrate-status@latest
+go install github.com/okm321/atlas-migrate-status@latest
 ```
 
 ### Manual Download
 
-Download the latest binary for your platform from [Releases](https://github.com/okmkm321/atlas-migrate-status/releases).
+Download the latest binary for your platform from [Releases](https://github.com/okm321/atlas-migrate-status/releases).
 
 ## Usage
 

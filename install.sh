@@ -4,7 +4,7 @@ set -e
 # atlas-migrate-status install script
 # Usage: curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/atlas-migrate-status/main/install.sh | sh
 
-REPO="okmkm321/atlas-migrate-status"
+REPO="okm321/atlas-migrate-status"
 INSTALL_DIR="${INSTALL_DIR:-/usr/local/bin}"
 
 # Detect OS and architecture
