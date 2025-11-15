@@ -44,16 +44,16 @@ archives:
       - LICENSE
 
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "checksums.txt"
   algorithm: sha256
 
 changelog:
   sort: asc
   filters:
     exclude:
-      - '^docs:'
-      - '^test:'
-      - '^chore:'
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
       - Merge pull request
       - Merge branch
 
