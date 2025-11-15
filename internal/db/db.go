@@ -2,6 +2,7 @@ package db
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"strings"
 	"time"
@@ -18,14 +19,18 @@ type Migration struct {
 	Error         string    `json:"error,omitempty"`
 }
 
-func FetchMigrationHistory(dbURL string, tableName string) ([]Migration, error) {
+func FetchMigrationHistory(dbURL string, tableName string) (migrations []Migration, err error) {
 	ctx := context.Background()
 
 	conn, err := pgx.Connect(ctx, dbURL)
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect to database: %w", err)
 	}
-	defer conn.Close(ctx)
+	defer func() {
+		if closeErr := conn.Close(ctx); closeErr != nil {
+			err = errors.Join(err, fmt.Errorf("failed to close database connection: %w", closeErr))
+		}
+	}()
 
 	query := fmt.Sprintf(`
 		SELECT
@@ -48,7 +53,6 @@ func FetchMigrationHistory(dbURL string, tableName string) ([]Migration, error) 
 	}
 	defer rows.Close()
 
-	var migrations []Migration
 	for rows.Next() {
 		var m Migration
 		err := rows.Scan(

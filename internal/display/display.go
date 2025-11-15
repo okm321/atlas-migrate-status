@@ -46,8 +46,13 @@ func PrintTable(migrations []db.Migration) {
 
 	table := tablewriter.NewWriter(os.Stdout)
 	table.Header([]string{"Version", "Description", "Executed At", "Durataion", "Type", "Status"})
-	table.Bulk(data)
-	table.Render()
+	if err := table.Bulk(data); err != nil {
+		fmt.Fprintf(os.Stderr, "failed to populate table: %v\n", err)
+		return
+	}
+	if err := table.Render(); err != nil {
+		fmt.Fprintf(os.Stderr, "failed to render table: %v\n", err)
+	}
 	fmt.Println()
 }
 
