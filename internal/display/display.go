@@ -7,6 +7,8 @@ import (
 
 	"github.com/okm321/atlas-migrate-status/internal/db"
 	"github.com/olekukonko/tablewriter"
+	"github.com/olekukonko/tablewriter/renderer"
+	"github.com/olekukonko/tablewriter/tw"
 )
 
 func PrintTable(migrations []db.Migration) {
@@ -44,7 +46,13 @@ func PrintTable(migrations []db.Migration) {
 		})
 	}
 
-	table := tablewriter.NewWriter(os.Stdout)
+	table := tablewriter.NewTable(
+		os.Stdout,
+		tablewriter.WithRenderer(renderer.NewBlueprint(
+			tw.Rendition{Symbols: tw.NewSymbols(tw.StyleASCII)},
+		)),
+		tablewriter.WithEastAsian(false),
+	)
 	table.Header([]string{"Version", "Description", "Executed At", "Durataion", "Type", "Status"})
 	if err := table.Bulk(data); err != nil {
 		fmt.Fprintf(os.Stderr, "failed to populate table: %v\n", err)
